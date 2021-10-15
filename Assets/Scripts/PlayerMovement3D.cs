@@ -20,6 +20,12 @@ public class PlayerMovement3D : MonoBehaviour
     {
         DoMove3D();
         DoJump3D();
+
+       
+
+
+
+
     }
 
     void DoJump3D()
@@ -61,31 +67,35 @@ public class PlayerMovement3D : MonoBehaviour
         velocity.x = 0;
         velocity.z = 0;
 
-        if (Input.GetKey("d"))
+        if (Input.GetKey("a"))
         {
-            velocity.x = 5;
+            velocity.x = 100;
             transform.localRotation = Quaternion.Euler(0, 90, 0);
         }
 
-        if (Input.GetKey("a"))
+        if (Input.GetKey("d"))
         {
-            velocity.x = -5;
+            velocity.x = -100;
             transform.localRotation = Quaternion.Euler(0, 270, 0);
-        }
-
-        if (Input.GetKey("s"))
-        {
-            velocity.z = -5;
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
 
         if (Input.GetKey("w"))
         {
-            velocity.z = 5;
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            velocity.z = -100;
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
 
-        if (velocity.z > 1 || velocity.z < -1 || velocity.x > 1 || velocity.x < -1 )
+        if (Input.GetKey("s"))
+        {
+            velocity.z = 100;
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            
+        }
+
+
+        rb.velocity = new Vector3(velocity.x, 0, velocity.z);
+
+        if (velocity.x > 1 || velocity.x < -1 || velocity.z > 1 || velocity.z < -1)
         {
             anim.SetBool("Walk", true);
         }
@@ -95,8 +105,15 @@ public class PlayerMovement3D : MonoBehaviour
         }
 
 
-        rb.velocity = velocity;
+
+
     }
+
+
+
+
+
+
 
 
 
